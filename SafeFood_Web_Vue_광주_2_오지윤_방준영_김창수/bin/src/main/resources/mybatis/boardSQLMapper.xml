@@ -2,12 +2,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- Board객체의 mybatis 설정 문제 -->
+<!-- Board의 mybatis 설정 문제 -->
 <mapper namespace="com.board">
+	
+	<select id="searchByName" resultType="BoardDTO"
+		parameterType="string">
+		select * from board where user_name like CONCAT(#{keyword},'%')
+	</select>
 
+	<select id="searchByTitle" resultType="BoardDTO"
+		parameterType="string">
+		select * from board where btitle like CONCAT(#{keyword},'%')
+	</select>
+	
 	<insert id="boardInsert" parameterType="BoardDTO">
 		insert into board values(
-		#{bid}, #{user_id}, #{btitle}, #{bcontent},#{bcount}
+		#{bid}, #{user_id}, #{btitle}, #{bcontent},#{bcount}, #{user_name}
 		)
 	</insert>
 	<update id="boardUpdate" parameterType="BoardDTO">
@@ -52,7 +62,7 @@
 	
 	<insert id="commentInsert" parameterType="CommentDTO">
 		insert into comment values(
-		#{cnum}, #{bid}, #{ccontent}, #{user_id}
+		#{cnum}, #{bid}, #{ccontent}, #{user_id} , (select mname from user where id = #{user_id} )
 		)
 	</insert>
 	
@@ -60,6 +70,18 @@
 		delete from comment where cnum = #{cnum};
 		
 	</delete>
+	
+	<select id="chatList" resultType="ChatDTO">
+		select * from chat order by cnum desc limit 10
+	</select>
+	
+	<insert id="chatInsert" parameterType="ChatDTO">
+		insert into chat values(
+		#{cnum}, #{ccontent}, #{user_id} , (select mname from user where id = #{user_id} )
+		)
+	</insert>
+	
+	
 	
 	
 </mapper>
