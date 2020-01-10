@@ -78,6 +78,9 @@ public class FoodRepositoryImpl implements IFoodRepository {
 	@Override
 	public int foodInsert(FoodDTO f) {
 		// TODO Auto-generated method stub
+		System.out.println("===");
+		System.out.println(f);
+		System.out.println("===");
 		return session.insert("com.food.foodInsert", f);
 	}
 

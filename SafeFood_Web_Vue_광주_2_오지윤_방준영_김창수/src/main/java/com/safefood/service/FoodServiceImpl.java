@@ -42,6 +42,7 @@ public class FoodServiceImpl implements IFoodService {
 	@Override
 	public int registerFood(FoodDTO f) {
 		// TODO Auto-generated method stub
+		System.out.println("Register!");
 		return repo.foodInsert(f);
 	}
 

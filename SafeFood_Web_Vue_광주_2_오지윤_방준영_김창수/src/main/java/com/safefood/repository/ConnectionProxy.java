@@ -9,8 +9,8 @@ public class ConnectionProxy {
 		Connection conn = null;
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/safefood?useSSL=false&&serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8", "ssafy", "ssafy");
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://database-2.cvttaxlfphnv.ap-northeast-2.rds.amazonaws.com:3306/safefood?serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8", "admin", "adminadmin1234");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
