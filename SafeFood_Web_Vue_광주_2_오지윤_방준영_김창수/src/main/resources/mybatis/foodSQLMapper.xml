@@ -29,15 +29,18 @@
 		code = #{code}
 	</update>
 
-	<insert id="foodInsert" parameterType="FoodDTO">
+
+ 	<insert id="foodInsert" parameterType="FoodDTO">
 		insert into food values(
-		#{code}, #{name}, #{supportpereat}, #{calory}, #{carbo}, #{protein},
-		#{fat}, #{sugar}, #{natrium}, #{chole},
-		#{fattyacid}, #{transfat}, #{maker}, #{material}, #{img}, #{allergy},#{searchCount}
-		)
+		#{code}, #{name}, #{supportpereat}, #{calory},
+		#{carbo}, #{protein}, #{fat}, #{sugar}, #{natrium}, #{chole},
+		#{fattyacid}, #{transfat}, #{maker}, #{material}, #{img},
+		#{allergy}, #{searchCount})
+	</insert>
+	<insert id="test" parameterType="int">
+		insert into tmp values(#{code})
 
 	</insert>
-
 	<delete id="foodDelete" parameterType="int">
 		delete from food where
 		code
@@ -55,17 +58,20 @@
 
 	<select id="searchByMaterialToFirst" resultType="FoodDTO"
 		parameterType="string">
-		select * from food where material like CONCAT(#{keyword},'%')
+		select * from food where material like
+		CONCAT(#{keyword},'%')
 	</select>
 
 	<select id="searchByMakeToFirst" resultType="FoodDTO"
 		parameterType="string">
-		select * from food where maker like CONCAT(#{keyword},'%')
+		select * from food where maker like
+		CONCAT(#{keyword},'%')
 	</select>
 
 	<select id="searchByNameToFirst" resultType="FoodDTO"
 		parameterType="string">
-		select * from food where name like CONCAT(#{keyword},'%')
+		select * from food where name like
+		CONCAT(#{keyword},'%')
 	</select>
 
 	<update id="searchCountUp" parameterType="int">
@@ -76,16 +82,19 @@
 
 	<select id="proSearchByName" resultType="FoodDTO"
 		parameterType="string">
-		select * from food where name like CONCAT('%',#{keyword},'%')
+		select * from food where name like
+		CONCAT('%',#{keyword},'%')
 	</select>
 
 	<select id="proSearchByMake" resultType="FoodDTO"
 		parameterType="string">
-		select * from food where maker like CONCAT('%',#{keyword},'%')
+		select * from food where maker like
+		CONCAT('%',#{keyword},'%')
 	</select>
 	<select id="proSearchByMaterial" resultType="FoodDTO"
 		parameterType="string">
-		select * from food where material like CONCAT('%',#{keyword},'%')
+		select * from food where material like
+		CONCAT('%',#{keyword},'%')
 	</select>
 
 </mapper>

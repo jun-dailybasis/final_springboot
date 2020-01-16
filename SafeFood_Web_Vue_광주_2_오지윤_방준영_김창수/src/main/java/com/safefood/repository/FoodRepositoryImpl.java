@@ -66,13 +66,18 @@ public class FoodRepositoryImpl implements IFoodRepository {
 
 	@Override
 	public boolean ajaxToDb(List<FoodDTO> foods) {
+		//System.out.println("RESULT" + foods.toString());
 		// TODO Auto-generated method stub
 		for (FoodDTO f : foods) {
-			System.out.println(f.toString());
+			System.out.println(" new " + f.toString());
 			session.insert("com.food.foodInsert", f);
-
 		}
-
+		//System.out.println(" new " + foods.get(0).toString());
+//		for(int code = 1; code <= 10 ; code++) {
+//			System.out.println(" new " + code);
+//			session.insert("com.food.test", code);
+//		}
+		session.close();
 		return true;
 	}
 	@Override
